@@ -51,17 +51,17 @@ void setup(void) {
 }
 
 void loop(void) {
-  Serial.print("Connecting to ");                                                       //Display url on Serial monitor for debugging
+  Serial.print("Connecting to ");
   Serial.println(url);
 
   http.begin(url);
-  int httpCode = http.GET();                                                            //Get crypto price from API
+  int httpCode = http.GET();
   StaticJsonDocument<2000> doc;
   DeserializationError error = deserializeJson(doc, http.getString());
 
   http.end();
 
-  if (error)                                                                            //Display error message if unsuccessful
+  if (error)
   {
     Serial.print(F("deserializeJson Failed"));
     Serial.println(error.f_str());
